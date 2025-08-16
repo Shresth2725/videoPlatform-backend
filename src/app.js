@@ -18,6 +18,12 @@ app.use(express.static("public")); // it is a public assest to temporarily store
 
 app.use(cookieParser()); // to handle protected cookie which can be only used by BE
 
+// routes
+import userRouter from "./routes/user.routes.js";
+
+// Routes declaration
+app.use("/api/v1/users", userRouter);
+
 export { app };
 
 // we use multer to get file data in app - multer is a library
