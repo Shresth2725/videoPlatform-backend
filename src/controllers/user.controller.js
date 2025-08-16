@@ -36,7 +36,8 @@ const registerUser = asyncHandler(async (req, res) => {
 
   if (existedUser) throw new ApiError(409, "userName or Email already existed");
 
-  // get image files
+  // get image files using multer
+  console.log(req.files);
   const avatarLocalPath = req.files?.avatar[0]?.path;
   const coverImageLocalPath = req.files?.coverImage[0]?.path;
 
@@ -49,6 +50,8 @@ const registerUser = asyncHandler(async (req, res) => {
 
   // validate the uploaded file
   if (!avatar) throw new ApiError(400, "Avatar file is required");
+
+  console.log(avatar);
 
   // create a user
   const user = await User.create({
